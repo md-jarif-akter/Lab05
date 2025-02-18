@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Star Rating'),
+      home: const MyHomePage(title: 'Basic Flutter UI - 02'),
     );
   }
 }
@@ -43,26 +43,30 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
+      body: Container(
+        child: Container(
+          child: Center(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(5, (index) {
-                return IconButton(
-                  icon: Icon(
-                    index < _rating ? Icons.star : Icons.star_border,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {
-                    _updateRating(index + 1.0); // Set rating on click
-                  },
-                );
-              }),
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(50, (index) {
+                    return IconButton(
+                      icon: Icon(
+                        index < _rating ? Icons.star : Icons.star_border,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        _updateRating(index + 1.0); // Set rating on click
+                      },
+                    );
+                  }),
+                ),
+                Text('Submit'),
+              ],
             ),
-            Text('Submit'),
-          ],
+          ),
         ),
       ),
     );
