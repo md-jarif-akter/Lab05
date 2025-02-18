@@ -1,70 +1,44 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Basic Flutter UI - 02'),
+      home: PhotoPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  double _rating = 3.0; // Default rating is 3.0
-
-  void _updateRating(double rating) {
-    setState(() {
-      _rating = rating;
-    });
-  }
-
+class PhotoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Photo with Rounded Border'),
       ),
-      body: Container(
+      body: Center(
         child: Container(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(50, (index) {
-                    return IconButton(
-                      icon: Icon(
-                        index < _rating ? Icons.star : Icons.star_border,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        _updateRating(index + 1.0); // Set rating on click
-                      },
-                    );
-                  }),
-                ),
-                Text('Submit'),
-              ],
+          height: 200.0, 
+          width: 200.0,  
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0), // Rounded border
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(0, 4),
+                blurRadius: 6,
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20.0), 
+            child: Image.network(
+              'https://tinyurl.com/cse414-nike-res', 
+              fit: BoxFit.cover, 
             ),
           ),
         ),
